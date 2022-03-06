@@ -2,9 +2,13 @@ import functools
 from flask import Flask, request, jsonify
 import logging
 from time import strftime
-
+import sys
 app = Flask(__name__)
-logging.basicConfig( level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+
+option = True if len(sys.argv) >=2 and sys.argv[1]=="debug" else False
+
+if option == True:
+    logging.basicConfig( level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
  
 
 
@@ -60,7 +64,7 @@ def index():
 def index_json():
     timestamp = strftime('[%Y-%b-%d %H:%M]')
     app.logger.debug('%s %s ', timestamp, request.full_path);
-    return jsonify({"message":"Hello, Wrold"})
+    return jsonify({"message":"Hello, World"})
 
 @index.accept('text/plain')
 def index_text():
@@ -69,4 +73,4 @@ def index_text():
     return 'Hello, World', 200, {'Content-Type': 'text/plain'}
 
 
-app.run(host='localhost', port=8000, debug=True)
+app.run(host='localhost', port=8000, debug=option)

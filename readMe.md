@@ -24,8 +24,7 @@ pip install flask
 
 Start Application
 
-1. 
-2. Run below command to start the application
+1. Run below command to start the application
 
    ```
    python3 app.py
@@ -55,7 +54,14 @@ output:
 }
 ```
 
+Enable Debug option
 
-Logging sample:
+* start application with debug option
+
+```
+python3 app.py debug
+```
+
+* Logging sample:
 
 2022-03-06 12:21:32,614 DEBUG app Thread-3 : [2022-Mar-06 12:21] /hello?
